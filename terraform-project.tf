@@ -9,6 +9,7 @@ terraform {
 
 
 
+
 # Configure the AWS Provider
 provider "aws" {
   region = "ap-south-1"
@@ -222,7 +223,7 @@ resource "aws_launch_template" "south-LT" {
     }
   }
 
-  #user_data = filebase64("userdata.sh")
+  user_data = filebase64("userdata.sh")
 }
 
 #creating ASG
