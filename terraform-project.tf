@@ -8,7 +8,13 @@ terraform {
 }
 
 
-
+terraform {
+  backend "s3" {
+    bucket = "terraform-s3-bucket-1july"
+    key = "terraform-infra2-file.tf"
+    region = "ap-south-1"
+  }
+}
 
 # Configure the AWS Provider
 provider "aws" {
@@ -199,7 +205,7 @@ resource "aws_lb" "south-loadbalancer" {
 resource "aws_launch_template" "south-LT" {
   name = "south-LT"
   image_id = "ami-0f5ee92e2d63afc18"
-  instance_type = "t2.micro"
+  instance_type = var.south_instance_type
   key_name = aws_key_pair.south-key.id
   monitoring {
     enabled = true
